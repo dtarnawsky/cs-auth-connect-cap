@@ -1,0 +1,7 @@
+{
+  "name": "iv-test",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
