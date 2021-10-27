@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Capacitor } from '@capacitor/core';
-import { BrowserVault, Device, DeviceSecurityType, IdentityVaultConfig, Vault, VaultType } from '@ionic-enterprise/identity-vault';
+import { BrowserVault, DeviceSecurityType, IdentityVaultConfig, Vault, VaultType } from '@ionic-enterprise/identity-vault';
 import { Platform } from '@ionic/angular';
 
 @Injectable({
@@ -12,10 +12,10 @@ export class VaultService {
     key: 'io.ionic.iv-test-bio',
     type: VaultType.DeviceSecurity,
     deviceSecurityType: DeviceSecurityType.Biometrics,
-    lockAfterBackgrounded: null,
+    lockAfterBackgrounded: 3000,
     shouldClearVaultAfterTooManyFailedAttempts: false,
     customPasscodeInvalidUnlockAttempts: 10,
-    unlockVaultOnLoad: false,
+    unlockVaultOnLoad: true,
   };
 
   vault: Vault | BrowserVault;
