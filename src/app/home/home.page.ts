@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Device } from '@ionic-enterprise/identity-vault';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../authentication/authentication.service';
-import { VaultService } from '../vault.service';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-home',
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
 })
-export class Tab1Page {
+export class HomePage {
   public authenticationChange$: Observable<boolean>;
 
-  constructor(private authenticationService: AuthenticationService, private vaultService: VaultService) {
+  constructor(private authenticationService: AuthenticationService) {
     this.authenticationChange$ = authenticationService.authenticationChange$;
   }
 
@@ -38,4 +36,5 @@ export class Tab1Page {
       alert('Token was refreshed')
     }    
   }
+
 }
