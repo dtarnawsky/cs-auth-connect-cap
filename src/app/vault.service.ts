@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Capacitor } from '@capacitor/core';
-import { BrowserVault, DeviceSecurityType, IdentityVaultConfig, Vault, VaultType } from '@ionic-enterprise/identity-vault';
+import { BrowserVault, Device, DeviceSecurityType, IdentityVaultConfig, Vault, VaultType } from '@ionic-enterprise/identity-vault';
 import { Platform } from '@ionic/angular';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Platform } from '@ionic/angular';
 export class VaultService {
 
   config: IdentityVaultConfig = {
-    key: 'io.ionic.iv-test-bio',
+    key: 'io.ionic.ac-bio',
     type: VaultType.DeviceSecurity,
     deviceSecurityType: DeviceSecurityType.Biometrics,
     lockAfterBackgrounded: 3000,
@@ -20,14 +20,7 @@ export class VaultService {
 
   vault: Vault | BrowserVault;
 
-  constructor(private platform: Platform) {
-
-    this.init();
-  }
-
-  async init() {
-    await this.platform.ready();
-
+  constructor(private platform: Platform) {    
     this.vault = Capacitor.getPlatform() === 'web' ? new BrowserVault(this.config) : new Vault(this.config);
     this.vault.onLock(() => {
       console.log('Vault was locked');
@@ -38,5 +31,6 @@ export class VaultService {
     this.vault.onError((err) => {
       console.log('Vault error', err);
     });
+    Device.setHideScreenOnBackground(true);
   }
 }

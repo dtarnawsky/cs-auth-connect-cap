@@ -17,10 +17,12 @@
   <div class="flex-center">
     <div *ngIf="(authenticationChange$ | async);then authenticated else unauthenticated">here is ignored</div>
     <ng-template #authenticated>
+      <ion-icon style="font-size:100px" name="person-circle-outline"></ion-icon><br/>
+
       <ion-label>Thanks for signing in.</ion-label><br/>
       <ion-button (click)="logout()">Sign Out</ion-button>
     </ng-template>
-    <ng-template #unauthenticated>
+    <ng-template #unauthenticated>     
       <ion-label>You need to sign in to continue.</ion-label><br/>
       <ion-button (click)="login()">Sign In</ion-button>
     </ng-template>
